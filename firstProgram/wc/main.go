@@ -12,7 +12,7 @@ func main() {
 }
 
 func count(r io.Reader) int {
-	// A scanner is used to read text from a Reader (such as files)
+	// Use a scanner to read text from a Reader (such as files)
 	scanner := bufio.NewScanner(r)
 
 	// Define the scanner split type to words (default is split by lines)
