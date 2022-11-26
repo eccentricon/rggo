@@ -2,21 +2,29 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"io"
 	"os"
 )
 
 func main() {
-	fmt.Println(count(os.Stdin))
+	// Define bool flag -l to count lines
+	lines := flag.Bool("l", false, "Count links")
+	// Parse flags provided by user
+	flag.Parse()
+
+	fmt.Println(count(os.Stdin, *lines))
 }
 
-func count(r io.Reader) int {
+func count(r io.Reader, countLines bool) int {
 	// Use a scanner to read text from a Reader (such as files)
 	scanner := bufio.NewScanner(r)
 
 	// Define the scanner split type to words (default is split by lines)
-	scanner.Split(bufio.ScanWords)
+	if !countLines {
+		scanner.Split(bufio.ScanWords)
+	}
 
 	// Defining a counter
 	wc := 0
